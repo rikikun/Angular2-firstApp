@@ -1,15 +1,9 @@
 import {Component} from 'angular2/core';
+import {Hero} from './hero';
+import {HeroDetailComponent} from './hero-detail.component';
 @Component({
     selector: 'my-app',
     template: `
-    <div *ngIf="selectedHero">
-	      <h2>{{selectedHero.name}} details!</h2>
-		  <div><label>id: </label>{{selectedHero.id}}</div>
-		  <div>
-		  <label>name: </label>
-		  <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-  	</div>
-    </div>
 	<ul class="heroes">
   		<li *ngFor="#hero of heroes" 
   		(click)="onSelect(hero)"
@@ -18,6 +12,7 @@ import {Component} from 'angular2/core';
  			<span class="badge">{{hero.id}}</span> {{hero.name}}
   		</li>
 	</ul>
+	<my-hero-detail [hero]="selectedHero"></my-hero-detail>
     `,
     styles:[`
   .selected {
@@ -66,7 +61,8 @@ import {Component} from 'angular2/core';
     margin-right: .8em;
     border-radius: 4px 0px 0px 4px;
   }
-`]
+`],
+directives: [HeroDetailComponent],
 })
 export class AppComponent {
 	public title = 'Tour of Heros 2';
@@ -88,7 +84,4 @@ let HEROES: Hero[] = [
 					  { "id": 20, "name": "Tornado" }
 					];
 
-interface Hero {
-	id: number;
-	name: string;
-}
+
