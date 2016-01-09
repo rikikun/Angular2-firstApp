@@ -1,3 +1,8 @@
-<div>
-	Yes
+<h3>{{title}}</h3>
+<div class="grid grid-pad">
+	<div *ngFor="#hero of topHeros" class="col-1-4" (click)="onChooseHero(hero)">
+		<div class="module hero">
+			<h4>{{hero.name}}</h4>
+		</div>
+	</div>
 </div>

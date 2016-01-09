@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', 'app/service/hero.service', 'angular2/router'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,25 +8,47 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, hero_service_1, router_1;
     var DashboardComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (hero_service_1_1) {
+                hero_service_1 = hero_service_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             DashboardComponent = (function () {
-                function DashboardComponent() {
+                function DashboardComponent(_heroService, _router) {
+                    this._heroService = _heroService;
+                    this._router = _router;
+                    this.title = 'Top Heros';
                 }
+                DashboardComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this._heroService.getHeroes().then(function (response) {
+                        _this.topHeros = response.slice(1, 5);
+                    });
+                };
+                DashboardComponent.prototype.onChooseHero = function (hero) {
+                    console.log(hero);
+                    this._router.navigate(['HeroDetail', { id: hero.id }]);
+                };
                 DashboardComponent = __decorate([
                     core_1.Component({
                         selector: 'dashboard',
                         templateUrl: 'app/dashboard/dashboard.component.html',
+                        styleUrls: ['app/dashboard/dashboard.component.css'],
+                        providers: [hero_service_1.HeroService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [(typeof (_a = typeof hero_service_1.HeroService !== 'undefined' && hero_service_1.HeroService) === 'function' && _a) || Object, router_1.Router])
                 ], DashboardComponent);
                 return DashboardComponent;
+                var _a;
             })();
             exports_1("DashboardComponent", DashboardComponent);
         }
