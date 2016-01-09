@@ -5,6 +5,7 @@ import {HeroService} from './service/hero.service';
 import {HeroDetailComponent} from './heroDetail/hero-detail.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {HerosComponent} from './heroes/heroes.component';
+import {OxGameComponent} from './oxGame/ox-game.component';
 @Component({
   selector: 'my-app',
   templateUrl: 'app/app.component.html',
@@ -16,6 +17,7 @@ import {HerosComponent} from './heroes/heroes.component';
   {path:'/dashboard', component: DashboardComponent, name: 'Dashboard'},
   {path:'/heroes', component: HerosComponent, name: 'Heroes', useAsDefault: true},
   {path:'/hero/:id', component: HeroDetailComponent, name: 'HeroDetail'}
+  {path:'/play', component: OxGameComponent, name: 'OxGame'}
 ])
 export class AppComponent implements OnInit {
 	constructor(private _heroService: HeroService) {}
