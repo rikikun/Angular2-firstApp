@@ -20,7 +20,6 @@ export class DashboardComponent implements OnInit {
 	}
 
 	onChooseHero(hero) {
-		console.log(hero);
 		this._router.navigate(['HeroDetail', { id: hero.id }]);
 	}
 }

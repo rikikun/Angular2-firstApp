@@ -35,7 +35,6 @@ System.register(['angular2/core', 'app/service/hero.service', 'angular2/router']
                     });
                 };
                 DashboardComponent.prototype.onChooseHero = function (hero) {
-                    console.log(hero);
                     this._router.navigate(['HeroDetail', { id: hero.id }]);
                 };
                 DashboardComponent = __decorate([

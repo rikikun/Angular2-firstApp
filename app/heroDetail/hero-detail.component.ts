@@ -1,18 +1,24 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, OnInit} from 'angular2/core';
+import {RouteParams} from 'angular2/router';
 import {Hero} from 'app/entity/hero';
+import {HeroService} from 'app/service/hero.service';
+
 @Component({
   selector: 'my-hero-detail',
-  template: `
-  <div *ngIf="hero">
-	      <h2>{{hero.name}} details!</h2>
-		  <div><label>id: </label>{{hero.id}}</div>
-		  <div>
-		  <label>name: </label>
-		  <input [(ngModel)]="hero.name" placeholder="name"/>
-  	</div>
-  </div>
-  `
+  templateUrl: 'app/heroDetail/hero-detail.component.html'
 })
-export class HeroDetailComponent {
-	@Input() hero: Hero;
+export class HeroDetailComponent implements OnInit {
+	// @Input() hero: Hero;
+	constructor(private _routeParams:RouteParams, private _heroService:HeroService) {}
+	public hero: Hero;
+	private heroId: string;
+
+	ngOnInit() {
+		this.heroId = this._routeParams.get('id');
+		let id = this.heroId;
+		this._heroService.getById(id).then(hero => {
+			console.log(hero);
+			this.hero = hero;
+		});
+	}
 }
