@@ -2,20 +2,43 @@ import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {OxGameService} from 'app/service/ox-game.service';
 import {OxGame} from 'app/entity/oxGame/ox-game';
+import {OxGameDetailComponent} from 'app/oxGame/ox-game-detail.component';
 @Component({
   selector: 'ox-game',
   templateUrl: 'app/oxGame/ox-game.component.html',
   // styleUrls: ['app/oxGame/ox-game.component.css']
+  directives: [OxGameDetailComponent],
   providers: [OxGameService]
 })
 export class OxGameComponent implements OnInit {
 	constructor(private _oxGameService:OxGameService) {}
-	public title = 'My Heroes';
-	public oxGame:OxGame;
+	public title = 'OX Game';
+	public currentGame:OxGame;
+	public runingId:number;
+	public games:OxGame[];
 
 	ngOnInit() {
-		this.oxGame = this._oxGameService.initialGame();
-		console.log(this.oxGame);
+		this.runingId = 1;
+	}
+
+	startGame() {
+		this.currentGame = this._oxGameService.initialGame(this.runingId++);
+		if(this.games){
+			this.games.unshift(this.currentGame);
+		}else {
+			this.games = [];
+			this.games.unshift(this.currentGame);
+		}
+	}
+
+	clearGame() {
+		this.games = '';
+		this.currentGame = [];
+	}
+
+	onSelectGame(event, selectGame) {
+		event.preventDefault();
+		this.currentGame = selectGame;
 	}
 }
 

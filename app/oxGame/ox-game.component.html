@@ -1,3 +1,13 @@
 <div>
-	ok Test
+	<h1>{{title}}</h1>
+	<button (click)="startGame()">New Game</button>
+	<button (click)="clearGame()">Clear</button>
+	<div *ngIf(games)>
+		<ox-game-detail [game]="currentGame"></ox-game-detail>
+	</div>
+	<div *ngIf(games)>
+		<div *ngFor="#game of games">
+			<a href="#" (click)="onSelectGame($event,game)">Game id: {{game.id}}</a>
+		</div>
+	</div>
 </div>

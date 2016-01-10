@@ -8,9 +8,17 @@ describe('OxGame service', () => {
     	_oxGameService = new OxGameService();
   	});
 
-
-  it('initialGame should return OxGame object', () => {
-  	let oxGame = _oxGameService.initialGame();
-  	expect(oxGame instanceof OxGame).toEqual(true);
-  });
+	describe('initialGame()', () => {
+		it('should return OxGame object', () => {
+		  	let oxGame = _oxGameService.initialGame();
+	  		expect(oxGame instanceof OxGame).toEqual(true);
+	  	});
+	  	it('should return OxGame object that reset state', () => {
+	  		let oxGame = _oxGameService.initialGame(1);
+	  		let initalState = [['','',''],['','',''],['','',''];
+	  		expect(oxGame instanceof OxGame).toEqual(true);
+	  		expect(oxGame.state).toEqual(initalState);
+	  		expect(oxGame.id).toEqual(1);
+	  	});	
+	}
 })

@@ -1,19 +1,11 @@
 export class OxGame {
 	constructor(
 		private id:number,
-		private name:string
+		private state:string[][],
 		) {
 		this.id = id;
-		this.name = name;
+		this.state = state;
 	}
 	private id: number;
-	private name: string;
-
-	getId() {
-		return this.id;
-	}
-
-	getName() {
-		return this.name;
-	}
+	private state: string[][];
 }
