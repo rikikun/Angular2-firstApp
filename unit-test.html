@@ -9,7 +9,10 @@
 </head>
 <body>
 	 <!-- #1. add the system.js library -->
-  <script src="./node_modules/systemjs/dist/system.src.js"></script>
+  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <script src="node_modules/rxjs/bundles/Rx.js"></script>
+  <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
   <script>
     // #2. Configure systemjs to use the .js extension
     //     for imports from the app folder
@@ -18,9 +21,15 @@
         'app': {defaultExtension: 'js'}
       }
     });
+
+    Promise.all([
+  		System.import('app/entity/hero.spec'),
+      System.import('app/entity/oxGame/ox-game.spec'),
+    	System.import('app/oxGame/ox-game.component.spec'),
+    	System.import('app/service/ox-game.service.spec')
+	])
     // #3. Import the spec file explicitly
-    System.import('app/entity/hero.spec')
-    System.import('app/oxGame/ox-game.component.spec')
+    
       // #4. wait for all imports to load ...
       //     then re-execute `window.onload` which
       //     triggers the Jasmine test-runner start
