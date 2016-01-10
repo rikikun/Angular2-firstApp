@@ -1,0 +1,12 @@
+.gamedetail {
+  position: absolute;
+  border: 3px solid #73AD21;
+}
+
+.imageturn {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100px;
+  width: 100px;
+}

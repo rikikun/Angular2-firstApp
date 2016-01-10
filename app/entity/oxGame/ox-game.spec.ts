@@ -19,4 +19,18 @@ describe('OxGame entity', () => {
 		expect(oxGame).toBeDefined();
 		expect(oxGame.state).toBeDefined();
 	});
+
+	it('should have status be start', () => {
+		let state = [['','',''],['','',''],['','',''];
+		let oxGame = new OxGame(1, state);
+		expect(oxGame.status).toBeDefined;
+		expect(oxGame.status).toEqual('start');
+	});
+
+	it('should have nextTurn be o', () => {
+		let state = [['','',''],['','',''],['','',''];
+		let oxGame = new OxGame(1, state);
+		expect(oxGame.nextTurn).toBeDefined;
+		expect(oxGame.nextTurn).toEqual('o');
+	});
 })

@@ -3,10 +3,11 @@ import {Router} from 'angular2/router';
 import {OxGameService} from 'app/service/ox-game.service';
 import {OxGame} from 'app/entity/oxGame/ox-game';
 import {OxGameDetailComponent} from 'app/oxGame/ox-game-detail.component';
+
 @Component({
   selector: 'ox-game',
   templateUrl: 'app/oxGame/ox-game.component.html',
-  // styleUrls: ['app/oxGame/ox-game.component.css']
+  styleUrls: ['app/oxGame/ox-game.component.css']
   directives: [OxGameDetailComponent],
   providers: [OxGameService]
 })
@@ -16,6 +17,7 @@ export class OxGameComponent implements OnInit {
 	public currentGame:OxGame;
 	public runingId:number;
 	public games:OxGame[];
+	public parts = [1,2,3,4,5,6,7,8,9];
 
 	ngOnInit() {
 		this.runingId = 1;
@@ -33,6 +35,7 @@ export class OxGameComponent implements OnInit {
 
 	clearGame() {
 		this.games = '';
+		this.runingId = 1;
 		this.currentGame = [];
 	}
 

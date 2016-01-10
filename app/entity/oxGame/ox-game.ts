@@ -8,4 +8,6 @@ export class OxGame {
 	}
 	private id: number;
 	private state: string[][];
+	private status = 'start';
+	private nextTurn = 'o';
 }

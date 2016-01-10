@@ -1,7 +1,18 @@
-<div>
+<div
+	class="gamedetail"
+	[style.top]="positionY"
+	[style.left]="positionX"
+	[style.width]="width"
+	[style.height]="height"
+>
 	<h3>{{title}}</h3>
-	<div *ngIf(game)>
-		<lable>id:{{game.id}}</lable>
+	<div *ngIf="game.status === 'start'">
+		<label>end</label>
+	</div>
+	<br>
+	<div *ngIf="game">
+		<img src={{image}} class="imageturn" 
+		(click)="turnClick()">
 	</div>
 	<br>
 </div>

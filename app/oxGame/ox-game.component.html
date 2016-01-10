@@ -2,8 +2,9 @@
 	<h1>{{title}}</h1>
 	<button (click)="startGame()">New Game</button>
 	<button (click)="clearGame()">Clear</button>
-	<div *ngIf(games)>
-		<ox-game-detail [game]="currentGame"></ox-game-detail>
+	<div *ngIf(games) class="parentGameDetail">
+		<ox-game-detail *ngFor="#part of parts" [part]="part" [game]="currentGame">
+		</ox-game-detail>
 	</div>
 	<div *ngIf(games)>
 		<div *ngFor="#game of games">
