@@ -5,10 +5,6 @@
 	[style.width]="width"
 	[style.height]="height"
 >
-	<h3>{{title}}</h3>
-	<div *ngIf="game.status === 'start'">
-		<label>end</label>
-	</div>
 	<br>
 	<div *ngIf="game">
 		<img src={{image}} class="imageturn" 

@@ -1,4 +1,7 @@
-import {Component, OnInit, Input, OnChanges, SimpleChange} from 'angular2/core';
+import {Component,
+ OnInit,Input,OnChanges,
+ SimpleChange, Output, EventEmitter
+} from 'angular2/core';
 import {OxGameService} from 'app/service/ox-game.service';
 import {OxGame} from 'app/entity/oxGame/ox-game';
 @Component({
@@ -21,17 +24,21 @@ export class OxGameDetailComponent implements OnInit {
 
 	@Input()game:OxGame;
 	@Input()part:number;
+	@Input()parentStatus:string;
+	@Output() bingo = new EventEmitter();
+
 
 	ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
 
     // Empty the changeLog whenever 'reset' property changes
     // hint: this is a way to respond programmatically to external value changes.
-    if (changes['game']) { 
-    	this.initialXY();
+  //   if (changes['game']) { 
+  //   	this.initialXY();
+		// this.changeImage();
+  //   }
+  		this.initialXY();
 		this.changeImage();
-    }
-    console.log('change');
-  }	
+  	}	
 
 	turnClick() {
 		if(this.game.status === 'start' && this.game.state[this.x][this.y] === '') {
@@ -42,6 +49,9 @@ export class OxGameDetailComponent implements OnInit {
 				this.game.nextTurn = 'o';
 			}
 			this._oxGameService.checkState(this.game);
+			if(this.game.status === 'end') {
+				this.bingo.emit('event');
+			}
 			this.changeImage();
 		}
 	}
